@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.field-label { display: block; margin-bottom: 6px; font-size: 0.75rem; font-weight: 600; color: #475569; }
+.dark .field-label { color: #cbd5e1; }
+
+:root {
+  font-family: 'Cairo', sans-serif;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+}
+
+* {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Table row hover */
+.table-row:hover {
+  background-color: #f8fafc;
+}
+.dark .table-row:hover {
+  background-color: #1e293b;
+}
+
+/* Animation for modal */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 200ms ease-out;
+}
+.animate-slide-up {
+  animation: slideUp 250ms ease-out;
+}
+
+/* Toast animation */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-slide-in {
+  animation: slideInLeft 300ms ease-out;
+}
+
+/* Dark mode readability for legacy views and shared controls */
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700,
+.dark .text-gray-600 {
+  color: #e2e8f0 !important;
+}
+.dark .text-gray-500,
+.dark .text-gray-400,
+.dark .text-gray-300 {
+  color: #cbd5e1 !important;
+}
+.dark .text-gray-200 {
+  color: #94a3b8 !important;
+}
+.dark select,
+.dark option {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8 !important;
+}
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: #475569 !important;
+}
+
+/* Print styles - ensure full page content prints */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.5cm;
+  }
+  html, body, #root {
+    background: white !important;
+    color: black !important;
+    font-size: 10px;
+  }
+  body {
+    overflow: visible !important;
+  }
+  #root,
+  #root > div,
+  main {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  main {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  /* Keep reports compact enough to avoid an almost-empty final page. */
+  table {
+    width: 100% !important;
+    font-size: 8px !important;
+  }
+  th, td {
+    padding: 3px 5px !important;
+    line-height: 1.25 !important;
+  }
+  h1, h2, h3, p {
+    line-height: 1.25 !important;
+  }
+  .print-table,
+  .print-table > div,
+  .overflow-hidden,
+  .overflow-x-auto,
+  .overflow-y-auto {
+    overflow: visible !important;
+    break-inside: auto !important;
+  }
+  [class*="bg-white"],
+  [class*="bg-slate-800"],
+  [class*="bg-slate-700"],
+  [class*="bg-gray-50"],
+  [class*="bg-gray-100"] {
+    background: white !important;
+  }
+  [class*="text-gray-"],
+  [class*="text-slate-"] {
+    color: #111827 !important;
+  }
+  [class*="border-gray-"],
+  [class*="border-slate-"] {
+    border-color: #d1d5db !important;
+  }
+  .dark [class*="dark:bg-"] {
+    background-color: white !important;
+  }
+  .dark [class*="dark:text-"] {
+    color: #111827 !important;
+  }
+  .dark [class*="dark:border-"] {
+    border-color: #d1d5db !important;
+  }
+  .print-table {
+    zoom: 0.8;
+    width: 125% !important;
+  }
+  .print-table tbody tr {
+    break-inside: avoid;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+  .print\:block {
+    display: block !important;
+  }
+  .print\:border-0 {
+    border: 0 !important;
+  }
+  .print\:border-b-2 {
+    border-bottom: 2px solid #333 !important;
+  }
+  .print\:border-t-2 {
+    border-top: 2px solid #333 !important;
+  }
+  .print\:border-gray-300 {
+    border-color: #333 !important;
+  }
+  .print\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .print\:flex {
+    display: flex !important;
+  }
+  .print\:justify-between {
+    justify-content: space-between !important;
+  }
+  .print\:divide-gray-200 > * + * {
+    border-color: #ccc !important;
+  }
+  /* Ensure tables don't break across pages awkwardly */
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; page-break-after: auto; }
+  thead { display: table-header-group; }
+  /* Ensure colors print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* Hide dark mode in print */
+  .dark,
+  .dark body,
+  .dark main,
+  .dark .bg-white,
+  .dark .bg-slate-800,
+  .dark .bg-slate-700,
+  .dark .bg-slate-700\/50,
+  .dark .bg-gray-50,
+  .dark .bg-gray-100 {
+    background: white !important;
+    color: black !important;
+  }
+  .dark .text-gray-800,
+  .dark .text-gray-700,
+  .dark .text-gray-600,
+  .dark .text-gray-500,
+  .dark .text-slate-100,
+  .dark .text-slate-200,
+  .dark .text-slate-300,
+  .dark .text-slate-400,
+  .dark .text-slate-500 {
+    color: #111827 !important;
+  }
+  .dark .border-gray-100,
+  .dark .border-gray-200,
+  .dark .border-slate-600,
+  .dark .border-slate-700 {
+    border-color: #d1d5db !important;
+  }
+  .dark .divide-slate-700 > * + * {
+    border-color: #d1d5db !important;
+  }
+  /* Force a light, compact print layout even when the screen is dark. */
+  html.dark * {
+    background-color: white !important;
+    color: #111827 !important;
+    border-color: #d1d5db !important;
+  }
+  html.dark .print-table {
+    zoom: 0.8;
+    width: 125% !important;
+  }
+}
+
+/* The voucher print sheet is the only printable surface while its viewer is open. */
+@media print {
+  body:has(.voucher-print-overlay) #root { visibility: hidden !important; }
+  body:has(.voucher-print-overlay) .voucher-print-overlay, body:has(.voucher-print-overlay) .voucher-print-overlay * { visibility: visible !important; }
+  body:has(.voucher-print-overlay) .voucher-print-overlay { position: absolute !important; top: 0 !important; right: 0 !important; left: 0 !important; padding: 0 !important; display: block !important; }
+  body:has(.voucher-print-overlay) .voucher-print { position: static !important; width: 100% !important; max-width: none !important; max-height: none !important; overflow: visible !important; box-shadow: none !important; border: none !important; }
+  body:has(.voucher-print-overlay) .voucher-print-overlay ~ * { display: none !important; }
+}
+/* Accessible controls in dark mode: never rely on the light palette for form text. */
+html.dark input:not([type=checkbox]):not([type=radio]),
+html.dark select, html.dark textarea {
+  color: #f8fafc;
+  background-color: #1e293b;
+  border-color: #64748b;
+  color-scheme: dark;
+}
+html.dark input::placeholder, html.dark textarea::placeholder { color: #cbd5e1; opacity: 1; }
+html.dark select option { color: #f8fafc; background-color: #1e293b; }
+html.dark input:disabled, html.dark select:disabled, html.dark textarea:disabled { color: #cbd5e1; opacity: .75; }
+@media print { html.dark input, html.dark select, html.dark textarea { color: #111827 !important; background: white !important; } }
+
+/* Printable voucher: clear A4 typography, without the compact report scale. */
+@media print {
+  body:has(.voucher-print-overlay) .voucher-print {
+    direction: rtl !important;
+    color: #0f172a !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+  body:has(.voucher-print-overlay) .voucher-print h2,
+  body:has(.voucher-print-overlay) .voucher-print h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+  }
+  body:has(.voucher-print-overlay) .voucher-print table,
+  body:has(.voucher-print-overlay) .voucher-print th,
+  body:has(.voucher-print-overlay) .voucher-print td,
+  body:has(.voucher-print-overlay) .voucher-print strong {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+  body:has(.voucher-print-overlay) .voucher-print th,
+  body:has(.voucher-print-overlay) .voucher-print td {
+    padding: 7px 9px !important;
+    break-inside: avoid !important;
+  }
+  body:has(.voucher-print-overlay) .voucher-print table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  body:has(.voucher-print-overlay) .voucher-print thead { display: table-header-group; }
+  body:has(.voucher-print-overlay) .voucher-print tr { break-inside: avoid; }
+}
+
+/* Voucher-type print accents; the paper print setting must preserve backgrounds. */
+@media print {
+  body:has(.voucher-print-overlay) .voucher-print table[data-voucher-type] {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  body:has(.voucher-print-overlay) .voucher-print table[data-voucher-type="receipt"] thead tr { background: #dcfce7 !important; }
+  body:has(.voucher-print-overlay) .voucher-print table[data-voucher-type="issue"] thead tr { background: #ffe4e6 !important; }
+  body:has(.voucher-print-overlay) .voucher-print table[data-voucher-type="return"] thead tr { background: #dbeafe !important; }
+  body:has(.voucher-print-overlay) .voucher-print table[data-voucher-type="transfer_wh"] thead tr { background: #ffedd5 !important; }
+  body:has(.voucher-print-overlay) .voucher-print table[data-voucher-type="transfer_dept"] thead tr { background: #f3e8ff !important; }
+}
