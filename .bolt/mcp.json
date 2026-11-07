@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "shaders": {
+      "enabled": true
+    },
+    "miro": {
+      "enabled": true
+    }
+  }
+}
